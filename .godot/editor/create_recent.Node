@@ -1,0 +1,10 @@
+MultiplayerSynchronizer
+CollisionShape2D
+Area2D
+ColorRect
+TextureRect
+Timer
+Sprite2D
+WorldEnvironment
+VisibleOnScreenNotifier2D
+Label

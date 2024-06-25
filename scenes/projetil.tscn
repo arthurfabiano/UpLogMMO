@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0t7hufdbiidc"]
+
+[ext_resource type="Texture2D" uid="uid://bax33yuwiqm62" path="res://assets/Square.png" id="1_wqxlt"]
+[ext_resource type="Script" path="res://scripts/Projetil.gd" id="2_maigy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1g5cu"]
+size = Vector2(16.0032, 15.8638)
+
+[node name="Projetil" type="Sprite2D"]
+modulate = Color(0.235294, 0.360784, 0.992157, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_wqxlt")
+script = ExtResource("2_maigy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.0232274, 0.0348413)
+scale = Vector2(0.801099, 0.799937)
+
+[node name="HitBox" type="Area2D" parent="." groups=["dano"]]
+
+[node name="Col" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.0519603, -0.017291)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_1g5cu")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

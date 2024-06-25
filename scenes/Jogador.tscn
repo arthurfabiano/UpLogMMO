@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dquyh8lebuwu"]
+
+[ext_resource type="Script" path="res://scripts/Jogador.gd" id="1_t65lx"]
+[ext_resource type="Texture2D" uid="uid://bax33yuwiqm62" path="res://assets/Square.png" id="2_p4t1d"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ci6v0"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Jogador" type="Node2D"]
+script = ExtResource("1_t65lx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.235843, 0.360688, 0.993136, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_p4t1d")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ci6v0")
+
+[node name="NicknameLabel" type="Label" parent="."]
+offset_left = -130.0
+offset_top = -43.0
+offset_right = 132.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0.815686, 0.576471, 0, 0.654902)
+theme_override_colors/font_shadow_color = Color(0.12549, 0, 0, 0.690196)
+theme_override_font_sizes/font_size = 9
+text = "João"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TempoRecarga" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="TempoRecarga" to="." method="_on_tempo_recarga_timeout"]
